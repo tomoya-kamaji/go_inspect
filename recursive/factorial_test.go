@@ -7,6 +7,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// 階差数列の公式
+// n! = n * (n-1) * (n-2) * ... * 1
+// 0! = 1
+// 1! = 1
+// 2! = 2 * 1 = 2
+// 3! = 3 * 2 * 1 = 6
+// 4! = 4 * 3 * 2 * 1 = 24
+// 5! = 5 * 4 * 3 * 2 * 1 = 120
+
 func TestFactorial(t *testing.T) {
 	tests := []struct {
 		name     string
