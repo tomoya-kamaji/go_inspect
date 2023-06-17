@@ -22,7 +22,7 @@ func TestBorrowBookUsecase(t *testing.T) {
 
 	mockRepo := mocks.NewMockBookRepository(ctrl)
 	mockRepo.EXPECT().Find(bookID).Return(book, nil).Times(1)
-	mockRepo.EXPECT().Save(&isBorrowedMatcher{isBorrowed: true}).Return(nil).Times(1)
+	mockRepo.EXPECT().Save(&isBorrowedMatcher{}).Return(nil).Times(1)
 
 	u := usecase.NewBorrowBookUsecase(mockRepo)
 
@@ -30,9 +30,7 @@ func TestBorrowBookUsecase(t *testing.T) {
 	assert.NoError(t, err)
 }
 
-type isBorrowedMatcher struct {
-	isBorrowed bool
-}
+type isBorrowedMatcher struct{}
 
 func (m *isBorrowedMatcher) Matches(x interface{}) bool {
 	book, ok := x.(*domain.Book)
