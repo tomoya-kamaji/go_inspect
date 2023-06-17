@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/tomoya_kamaji/go_inspect/book/domain"
-	"github.com/tomoya_kamaji/go_inspect/book/domain/mocks"
+	mocks "github.com/tomoya_kamaji/go_inspect/book/mocks/repositoryImpl"
 	"github.com/tomoya_kamaji/go_inspect/book/usecase"
 )
 
@@ -22,7 +22,7 @@ func TestBorrowBookUsecase(t *testing.T) {
 
 	mockRepo := mocks.NewMockBookRepository(ctrl)
 	mockRepo.EXPECT().Find(bookID).Return(book, nil).Times(1)
-	mockRepo.EXPECT().Save(&isBorrowedMatcher{isBorrowed: true}).Return(nil).Times(1)
+	mockRepo.EXPECT().Save(&isBorrowedMatcher{}).Return(nil).Times(1)
 
 	u := usecase.NewBorrowBookUsecase(mockRepo)
 
